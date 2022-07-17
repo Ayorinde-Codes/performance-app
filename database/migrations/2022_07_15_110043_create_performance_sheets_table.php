@@ -29,6 +29,7 @@ class CreatePerformanceSheetsTable extends Migration
             $table->string('manager_comment')->nullable();
             $table->string('business_unit_comment')->nullable();
             $table->string('status')->default('pending');
+            $table->text('meta_data')->nullable();
             $table->timestamp('last_edited_at')->nullable();
             $table->timestamps();
         });
