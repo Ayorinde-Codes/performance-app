@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateKeyResultAreasTable extends Migration
 {
+    protected $schemaTable = 'key_result_areas';
     /**
      * Run the migrations.
      *
@@ -13,7 +14,7 @@ class CreateKeyResultAreasTable extends Migration
      */
     public function up()
     {
-        Schema::create('key_result_areas', function (Blueprint $table) {
+        Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('objectives')->nullable();
@@ -29,6 +30,6 @@ class CreateKeyResultAreasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('key_result_areas');
+        Schema::dropIfExists($this->schemaTable);
     }
 }

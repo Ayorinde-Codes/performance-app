@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateRolesTable extends Migration
 {
+    protected $schemaTable = 'roles';
     /**
      * Run the migrations.
      *
@@ -13,7 +14,7 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +28,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists($this->schemaTable);
     }
 }

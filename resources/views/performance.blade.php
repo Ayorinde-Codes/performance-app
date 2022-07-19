@@ -19,7 +19,7 @@
                 <section class="review-section information">
                     <div class="review-header text-center">
                         <h3 class="review-title">Employee Basic Information</h3>
-                        <p class="text-muted">Lorem ipsum dollar</p>
+                        {{-- <p class="text-muted">Lorem ipsum dollar</p> --}}
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
@@ -30,40 +30,40 @@
                                             <td>
                                                 <form>
                                                     <div class="form-group">
-                                                        <label for="name">Name</label>
-                                                        <input type="text" class="form-control" id="name">
+                                                        <label for="name">Full Name</label>
+                                                        <input type="text" value="{{$user->firstname}} {{$user->lastname}}" class="form-control" id="name" readonly>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="depart3">Department</label>
-                                                        <input type="text" class="form-control" id="depart3">
+                                                        <label for="depart3">Unit/Department</label>
+                                                        <input type="text" class="form-control" value="{{$user->department}}" id="depart3" readonly>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="departa">Designation</label>
-                                                        <input type="text" class="form-control" id="departa">
+                                                        <label for="departa">Job / Title</label>
+                                                        <input type="text" class="form-control" value="{{$user->job_title}}" id="departa" readonly>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="qualif">Qualification: </label>
-                                                        <input type="text" class="form-control" id="qualif">
+                                                        <label for="qualif">Relevant Qualification: </label>
+                                                        <input type="text" class="form-control" value="{{$user->qualification}}" id="qualif" readonly>
                                                     </div>
                                                 </form>
                                             </td>
                                             <td>
                                                 <form>
                                                     <div class="form-group">
-                                                        <label for="doj">Emp ID</label>
-                                                        <input type="text" class="form-control" value="DGT-009">
+                                                        <label for="doj">Employee No./ CAI</label>
+                                                        <input type="text" class="form-control" value="{{$user->employee_id}}" readonly>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="doj">Date of Join</label>
-                                                        <input type="text" class="form-control" id="doj">
+                                                        <label for="doj">Month/Years Employed</label>
+                                                        <input type="text" class="form-control" value="{{date_format(date_create($user->employment_date),"F j, Y")}}" id="doj" readonly>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="doc">Date of Confirmation</label>
-                                                        <input type="text" class="form-control" id="doc">
+                                                        <input type="text" class="form-control" value="{{date_format(date_create($user->employment_date),"F j, Y")}}" id="doc" readonly>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="qualif1">Previous years of Exp</label>
-                                                        <input type="text" class="form-control" id="qualif1">
+                                                        <input type="text" class="form-control" id="qualif1" readonly>
                                                     </div>
                                                 </form>
                                             </td>
@@ -71,11 +71,11 @@
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="name1"> RO's Name</label>
-                                                        <input type="text" class="form-control" id="name1">
+                                                        <input type="text" class="form-control" id="name1" readonly>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="depart1"> RO Designation: </label>
-                                                        <input type="text" class="form-control" id="depart1">
+                                                        <input type="text" class="form-control" id="depart1" readonly>
                                                     </div>
                                                 </form>
                                             </td>
@@ -100,16 +100,41 @@
                                         <tr>
                                             <th style="width:40px;">#</th>
                                             <th>Key Result Area</th>
-                                            <th>Key Performance Indicators</th>
-                                            <th>Weightage</th>
+                                            <th>Key Performance Indicators (Objective)</th>
+                                            <th>Weight</th>
                                             <th>Percentage achieved <br>( self Score )</th>
-                                            <th>Points Scored <br>( self )</th>
-                                            <th>Percentage achieved <br>( RO's Score )</th>
-                                            <th>Points Scored <br>( RO )</th>
+                                            {{-- <th>Points Scored <br>( self )</th> --}}
+                                            <th>Percentage achieved <br>( Supervisor Score )</th>
+                                            <th>Percentage achieved <br>( GM Score )</th>
+                                            {{-- <th>Points Scored <br>( RO )</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        @php $id = 1; @endphp
+                                        @foreach ($keyResultAreas as $keyResultArea)
+                                            <tr>
+                                                <td>{{$id++}}</td>
+                                                <td>{{$keyResultArea->name}}</td>
+                                                <td>{{$keyResultArea->objectives}}</td>
+                                                <td><input type="text" class="form-control" readonly value="{{$keyResultArea->weight}}"></td>
+                                                <td> 
+                                                    <form action="{{ route('performance.create.employee') }}" method="POST">
+                                                        @csrf
+                                                    <div class="input-group">
+                                                        <input type="number" min="1" max="30" name="employee_score" class="form-control" > 
+                                                            {{-- <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-plus" style='color: white' aria-hidden="true"></i></button> --}}
+                                                            <span class="input-group-btn">
+                                                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-plus" style='color: white' aria-hidden="true"></i></button>
+                                                            </span>
+                                                    </div>
+                                                     </form> 
+                                                </td>
+                                                <td><input type="text" class="form-control" readonly value="-"></td>
+                                                {{-- <td><input type="text" class="form-control" ></td> --}}
+                                                <td><input type="text" class="form-control" readonly value="-"></td>
+                                            </tr>
+                                        @endforeach
+                                        {{-- <tr>
                                             <td rowspan="2">1</td>
                                             <td rowspan="2">Production</td>
                                             <td>Quality</td>
@@ -174,7 +199,7 @@
                                             <td><input type="text" class="form-control" readonly value="0"></td>
                                             <td><input type="text" class="form-control" readonly value="0"></td>
                                             <td><input type="text" class="form-control" readonly value="0"></td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>

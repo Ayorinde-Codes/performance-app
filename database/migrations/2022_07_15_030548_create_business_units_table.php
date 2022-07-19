@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBusinessUnitsTable extends Migration
 {
+    protected $schemaTable = 'business_units';
+
     /**
      * Run the migrations.
      *
@@ -13,7 +15,7 @@ class CreateBusinessUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_units', function (Blueprint $table) {
+        Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -27,6 +29,6 @@ class CreateBusinessUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_units');
+        Schema::dropIfExists($this->schemaTable);
     }
 }

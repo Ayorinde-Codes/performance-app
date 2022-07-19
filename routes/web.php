@@ -7,7 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BusinessUnitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KeyResultAreaController;
-
+use App\Http\Controllers\PerformanceEvaluationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +72,14 @@ Route::group(['middleware' => 'auth' ], function () {
         Route::post('/create', [KeyResultAreaController::class, 'create'])->name('keyResultArea.create');
         Route::post('/update', [KeyResultAreaController::class, 'update'])->name('keyResultArea.update');
         Route::post('/delete', [KeyResultAreaController::class, 'create'])->name('keyResultArea.delete');
+    });
+
+    //PerformanceEvaluation
+    Route::group(['prefix' => 'performance'], function () {
+        Route::get('/', [PerformanceEvaluationController::class, 'index'])->name('performance.index');
+        Route::post('/create/employee', [PerformanceEvaluationController::class, 'create'])->name('performance.create.employee');
+        // Route::post('/update', [KeyResultAreaController::class, 'update'])->name('keyResultArea.update');
+        // Route::post('/delete', [KeyResultAreaController::class, 'create'])->name('keyResultArea.delete');
     });
 
     //My profile    view/leave  user/timesheet

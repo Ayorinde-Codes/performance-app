@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\KeyResultArea;
 use Illuminate\Http\Request;
-use App\Models\PerformanceSheet;
+use App\Models\PerformanceEvaluation;
 
-class PerformanceSheetController extends Controller
+class PerformanceEvaluationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,13 @@ class PerformanceSheetController extends Controller
      */
     public function index()
     {
-        $performances = PerformanceSheet::all();
+        $performances = PerformanceEvaluation::all();
 
         $user = auth()->user();
 
-        $keyResultArea = KeyResultArea::all();
+        $keyResultAreas = KeyResultArea::all();
 
-        return view('performanceSheet');
+        return view('performance', compact('performances', 'user', 'keyResultAreas'));
     }
 
     /**
@@ -29,8 +29,10 @@ class PerformanceSheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+
+        dd($request->all());
         
     }
 

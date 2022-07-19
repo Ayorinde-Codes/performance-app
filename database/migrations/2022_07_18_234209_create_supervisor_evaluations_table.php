@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFailedJobsTable extends Migration
+class CreateSupervisorEvaluationsTable extends Migration
 {
-    protected $schemaTable = 'failed_jobs';
+    protected $schemaTable = 'supervisor_evaluations';
 
     /**
      * Run the migrations.
@@ -16,13 +16,13 @@ class CreateFailedJobsTable extends Migration
     public function up()
     {
         Schema::create($this->schemaTable, function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('performance_evaluation_id')->nullable();
+            $table->text('comment')->nullable();
+            $table->text('meta_data')->nullable();
+            $table->float('total_score')->nullable();
+            $table->timestamps();
         });
     }
 

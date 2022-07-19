@@ -70,9 +70,9 @@ class User extends Authenticatable
         return UserRole::where('user_id', Auth()->user()->id)->first();
     }
 
-    public function businessUnit()
+    public function performanceEvaluation()
     {
-        return $this->hasOne(UserBusinessUnit::class, 'user_id');
+        return $this->hasMany(PerformanceEvaluation::class, 'user_id');
     }
 
     // public function userSupervisor()
