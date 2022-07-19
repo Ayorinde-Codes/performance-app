@@ -16,27 +16,32 @@ class BusinessUnitSeeder extends Seeder
     {
         $business_unit = [
             [
-                'name' => 'Finance & Accounting',
+                'name' => 'Finance',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Human Resources',
+                'name' => 'Business Services & Product Ops.',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'IT',
+                'name' => 'Corporate Services',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Marketing',
+                'name' => 'Information Technology',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Sales',
+                'name' => 'Internal Control',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Projects & Facility Management',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

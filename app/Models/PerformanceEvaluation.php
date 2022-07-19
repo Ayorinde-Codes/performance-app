@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class PerformanceSheet extends Model
+class PerformanceEvaluation extends Model
 {
     use HasFactory;
     CONST ADMIN_STATUS = 'approved_by_admin';
@@ -21,4 +21,18 @@ class PerformanceSheet extends Model
         return $this->belongsTo(User::class, 'user_id');   
     }
 
+    public function employeeEvaluation()
+    {
+        return $this->hasOne(EmployeeEvaluation::class, 'performance_evaluation_id');
+    }
+
+    public function supervisorEvaluation()
+    {
+        return $this->hasOne(SupervisorEvaluation::class, 'performance_evaluation_id');
+    }
+
+    public function adminstrationEvaluation()
+    {
+        return $this->hasOne(AdministrativeEvaluation::class, 'performance_evaluation_id');
+    }
 }

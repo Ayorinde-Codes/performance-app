@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUserSupervisorsTable extends Migration
 {
+    protected $schemaTable = 'user_supervisors';
+
     /**
      * Run the migrations.
      *
@@ -13,7 +15,7 @@ class CreateUserSupervisorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_supervisors', function (Blueprint $table) {
+        Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('supervisor_id')->nullable();
@@ -31,6 +33,6 @@ class CreateUserSupervisorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_supervisors');
+        Schema::dropIfExists($this->schemaTable);
     }
 }

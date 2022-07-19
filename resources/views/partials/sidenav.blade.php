@@ -24,6 +24,10 @@
                     <li> 
                         <a href="{{ URL('employee') }}"><i class="la la-user"></i> <span>Employees</span></a>
                     </li>  
+
+                    <li> 
+                        <a href="{{ URL('performance') }}"><i class="la la-user"></i> <span>Performance Appraisal</span></a>
+                    </li>  
                     
                 {{-- @endif --}}
 

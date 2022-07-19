@@ -288,14 +288,6 @@
                     $(".show_supervisor").hide();
             }
             $(document).ready( function() {
-                // if ( $.fn.DataTable.isDataTable( '#log-table' ) ) {
-                //     $( '#log-table' ).DataTable().destroy();
-                // }
-                // $('#log-table').DataTable( {
-                //         destroy: true,
-                //         searching: false
-                //     } );
-
                 $('#user-log-table').DataTable({
                     dom: 'Bfrtip',
                     paging: true,
